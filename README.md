@@ -14,3 +14,12 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+The following stats are highly inaccurate - most work is done in private repositories!
+
+## General Stats
+![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=Stausssi&theme=aura)
+
+
+## Top Languages
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Stausssi&theme=aura&layout=compact)
