@@ -1,6 +1,6 @@
 ## Welcome to my profile!
 
-The following stats are highly inaccurate - most work is done in private repositories!
+Most of the repositories are related to university exams!
 
 ![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=Stausssi&theme=aura)
 
