@@ -6,3 +6,5 @@
 ![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=Stausssi&theme=vision-friendly-dark&show_icons=true&hide=issues,prs) 
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Stausssi&theme=vision-friendly-dark&hide=html,jupyter%20notebook)
+
+**NOTE:** I've recently added a lot of (*very*) old repositories from university lectures. They all have a `Lecture_` prefix and/or are archived to easily distinguish them from active repositories I'm working on.
