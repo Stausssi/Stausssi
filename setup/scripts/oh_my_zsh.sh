@@ -1,24 +1,19 @@
 #!/usr/bin/env bash
 
-cd
+cd "$(dirname "${BASE_PATH}")" || exit
 
 function install_zsh_linux {
   sudo apt install zsh -y
 }
 
 function install_zsh_mac {
-  if ! command -v brew; then
-    echo "Installing Homebrew first"
-
-  fi
-
   brew install zsh
 }
 
-echo "Setting up Oh My Zsh..."
+echo "Setting up (Oh My) Zsh..."
 if ! command -v zsh; then
   echo "Installing ZSH"
-  case "$OS" in
+  case "${OS}" in
     Linux*) install_zsh_linux;;
     Mac*) install_zsh_mac;;
   esac
@@ -33,9 +28,12 @@ else
   exit 2
 fi
 
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if ! command -v omz; then
+  echo "foo"
+  #sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 echo "Configuring .zshrc"
-cp ./.zshrc ~/.zshrc.test
+cp ../configs/.zshrc ~/.zshrc.test
 
 # TODO: Activate script
