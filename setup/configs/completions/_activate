@@ -1,0 +1,7 @@
+#compdef activate
+
+_activate() {
+  _arguments '1:repository:($(ls ~/code | grep sofc | tr \\n " "))'
+}
+
+_activate "$@"
