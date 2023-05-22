@@ -6,17 +6,6 @@ cd "${BASE_PATH}" || exit
 SCRIPTS_PATH="scripts"
 PREV_STEP_FILE="PREV_STEP"
 
-if [[ -f "${PREV_STEP_FILE}" ]]; then
-  potential_step="$(cat "${PREV_STEP_FILE}")"
-
-  if [[ "${potential_step}" =~ ^[0-9]+$ ]]; then
-    PREV_STEP="${potential_step}"
-    echo "INFO: Continuing with step ${PREV_STEP}"
-    echo ""
-  fi
-fi
-PREV_STEP="${PREV_STEP:=0}"
-
 function call_sub_script {
   echo "----- [Step $2: $1] -----"
 
@@ -36,32 +25,62 @@ function call_sub_script {
   cd "${SCRIPTS_PATH}" || exit 1
 
   chmod +x "${script_name}"
+  ./"${script_name}"
+  return_code="$?"
 
-  if ! eval "./${script_name}"; then
-    [[ "$?" -eq 1 ]] && echo "'$1' failed!"
-    echo "$2" > "../${PREV_STEP_FILE}"
-    exit "$?"
+  if [[ "${return_code}" -gt 0 ]]; then
+    case "${return_code}" in
+      1)  echo "'$1' failed!";;
+      2)  echo "$2" > "../${PREV_STEP_FILE}";;
+      3)  echo "$(("$2" + 1))" > "../${PREV_STEP_FILE}";;
+      *)  echo "Unknown exit code: ${return_code}";;
+    esac
+
+    exit ${return_code}
   fi
 
   echo "Done!"
   echo ""
-
   cd "${BASE_PATH}" || exit
 }
 
+# Determine the OS
+echo "Determining operating system..."
+case "$(uname -s)" in
+  Linux*)   OS=Linux;;
+  Darwin*)  OS=Mac;;
+esac
+
+if [[ -n ${OS} ]]; then
+  echo "Running on ${OS}!"
+else
+  echo "Unable to determine operating system!"
+  exit 1
+fi
 
 STEPS=(
-  "Determine OS"
   "Setup OS"
   "(Oh My) Zsh"
   "Setup Git"
+  "Install Software"
 )
+
+if [[ -f "${PREV_STEP_FILE}" ]]; then
+  potential_step="$(cat "${PREV_STEP_FILE}")"
+
+  if [[ "${potential_step}" =~ ^[0-9]+$ ]]; then
+    PREV_STEP="${potential_step}"
+    echo "INFO: Continuing with step ${PREV_STEP}"
+  fi
+fi
+PREV_STEP="${PREV_STEP:=0}"
+
+echo ""
 
 for step_num in "${!STEPS[@]}"; do
   step_name="${STEPS[${step_num}]}"
 
-  # Step 0 (Determine OS) should always be executed
-  if [[ "${step_num}" -lt "${PREV_STEP}" && "${step_num}" != 0 ]]; then
+  if [[ "${step_num}" -lt "${PREV_STEP}" ]]; then
     continue
   fi
 

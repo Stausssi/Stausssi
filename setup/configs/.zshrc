@@ -25,7 +25,7 @@ ZSH_THEME="simple"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -105,10 +105,10 @@ alias zshconfig="nano ~/.zshrc"
 
 # Activate venv for repo
 function activate() {
-  [[ -z $1 || -n $2 ]] && echo "Usage: activate [target]" && echo "  target - The name of the repository, e.g. sofc-cm-test-system" && return 1
+  [[ -z "$1" || -n "$2" ]] && echo "Usage: activate [target]" && echo "  target - The name of the repository, e.g. Stausssi" && return 1
 
-  source ~/.virtualenvs/"$1"/bin/activate &> /dev/null || echo "No virtual environment with the name '$1' found!"
-  cd ~/code/"$1"
+  source "~/.virtualenvs/$1/bin/activate" &> /dev/null || echo "No virtual environment with the name '$1' found!"
+  cd "~/code/$1"
 }
 
 # Other completions

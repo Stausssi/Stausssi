@@ -2,21 +2,10 @@
 
 cd "$(dirname "${BASE_PATH}")" || exit
 
-function install_zsh_linux {
-  sudo apt install zsh -y
-}
-
-function install_zsh_mac {
-  brew install zsh
-}
-
 echo "Setting up (Oh My) Zsh..."
-if ! command -v zsh; then
+if ! command -v zsh &> /dev/null; then
   echo "Installing ZSH"
-  case "${OS}" in
-    Linux*) install_zsh_linux;;
-    Mac*) install_zsh_mac;;
-  esac
+  brew install zsh
 fi
 
 if [[ "${SHELL}" =~ .*"zsh".* ]]; then
@@ -28,12 +17,24 @@ else
   exit 2
 fi
 
-if ! command -v omz; then
-  echo "foo"
-  #sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [[ -z "${ZSH}" ]]; then
+  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-echo "Configuring .zshrc"
-cp ../configs/.zshrc ~/.zshrc.test
+echo "Copying configuration files and creating backups"
+function copy_with_backup {
+  origin="$1"
+  destination="$2"
 
-# TODO: Activate script
+  if [[ -f "${destination}" ]]; then
+    mv "${destination}" "${destination}.bak"
+  fi
+  cp "${origin}" "${destination}"
+}
+
+copy_with_backup ../configs/.zshrc ~/.zshrc
+copy_with_backup ../configs/.zshenv ~/.zshenv
+cp -r ../configs/completions ~/.oh-my-zsh/
+
+echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
+exit 3
