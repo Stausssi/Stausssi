@@ -44,5 +44,16 @@ echo "Cloning plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions &> ${log_file}
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &> ${log_file}
 
+# Insert Linuxbrew stuff into zshrc
+if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
+  echo "Configuring (Linux)brew..."
+  {
+    echo "# Linuxbrew configuration"
+    echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo ""
+    cat ~/.zshrc
+  } > tempfile && mv tempfile ~/.zshrc
+fi
+
 echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
 exit 3

@@ -62,6 +62,7 @@ esac
 
 if [[ -n ${OS} ]]; then
   echo "Running on ${OS}!"
+  export OS
 else
   echo "Unable to determine operating system!"
   exit 1

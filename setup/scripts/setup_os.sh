@@ -3,12 +3,10 @@
 log_file="logs/setup_os.log"
 
 function setup_linux {
-  if [[ -n ${configure_brew} ]]; then
-    echo "Configuring (Linux)brew..."
-    (echo; echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)") >> ~/.zprofile
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    sudo apt install -y build-essential | sudo tee "${log_file}"
-  fi
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo "Installing build essentials"
+  # shellcheck disable=SC2024
+  sudo apt install -y build-essential &> "${log_file}"
 }
 
 function setup_mac {
@@ -22,7 +20,6 @@ function setup_mac {
 if ! command -v brew &> /dev/null; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  configure_brew=true
 fi
 
 case "${OS}" in
