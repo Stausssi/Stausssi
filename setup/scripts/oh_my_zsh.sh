@@ -40,5 +40,9 @@ copy_with_backup configs/.zshrc ~/.zshrc
 copy_with_backup configs/.zshenv ~/.zshenv
 cp -r configs/completions ~/.oh-my-zsh/
 
+echo "Cloning plugins..."
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions &> ${log_file}
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &> ${log_file}
+
 echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
 exit 3
