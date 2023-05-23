@@ -39,6 +39,7 @@ function call_sub_script {
     exit ${return_code}
   fi
 
+  echo "$2" > "../${PREV_STEP_FILE}"
   echo "Done!"
   echo ""
   cd "${BASE_PATH}" || exit
