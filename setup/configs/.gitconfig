@@ -1,13 +1,3 @@
-[credential "https://github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[user]
-	signingkey = 54AE92C7EE67664EFB7A22ABFA416316FC06D575
-	name = Simon Stauss
-	email = Simon.Stauss2@de.bosch.com
 [commit]
 	gpgsign = true
 [core]

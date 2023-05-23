@@ -44,6 +44,14 @@ function call_sub_script {
   cd "${BASE_PATH}" || exit
 }
 
+# Setup directories
+if [[ ! -d configs/backup ]]; then
+  mkdir configs/backup
+fi
+if [[ ! -d scripts/logs ]]; then
+  mkdir scripts/logs
+fi
+
 # Determine the OS
 echo "Determining operating system..."
 case "$(uname -s)" in
