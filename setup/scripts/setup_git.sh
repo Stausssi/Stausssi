@@ -4,6 +4,7 @@
 cd .. || exit
 
 log_file="scripts/logs/setup_git.log"
+rm -f "${log_file}"
 
 echo "Configuring git..."
 if [[ -f ~/.gitconfig ]]; then
@@ -33,7 +34,7 @@ read -rp "Please copy the ID of the key you want to use for git: " key_id
 git config --global user.signingkey "${key_id}"
 
 echo "Installing GitHub CLI..."
-brew install gh &> ${log_file}
+brew install gh &>> ${log_file}
 gh auth login -p https -s write:gpg_key -w
 gh auth setup-git
 gh config set editor nano

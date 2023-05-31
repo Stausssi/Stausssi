@@ -4,11 +4,12 @@
 cd .. || exit
 
 log_file="scripts/logs/oh_my_zsh.log"
+rm -f "${log_file}"
 
 echo "Setting up (Oh My) Zsh..."
 if ! command -v zsh &> /dev/null; then
   echo "Installing ZSH"
-  brew install zsh &> ${log_file}
+  brew install zsh &>> ${log_file}
 fi
 
 if [[ "${SHELL}" =~ .*"zsh".* ]]; then
@@ -41,8 +42,8 @@ copy_with_backup configs/.zshenv ~/.zshenv
 cp -r configs/completions ~/.oh-my-zsh/
 
 echo "Cloning plugins..."
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions &> ${log_file}
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &> ${log_file}
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions &>> ${log_file}
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &>> ${log_file}
 
 # Insert Linuxbrew stuff into zshrc
 if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
