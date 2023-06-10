@@ -56,5 +56,10 @@ if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
   } > tempfile && mv tempfile ~/.zshrc
 fi
 
+echo "Setting up Spaceship..."
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 &>> ${log_file}
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" &>> ${log_file}
+copy_with_backup configs/.spaceshiprc.zsh ~/.spaceshiprc.zsh
+
 echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
 exit 3
