@@ -60,6 +60,14 @@ echo "Setting up Spaceship..."
 git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1 &>> ${log_file}
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" &>> ${log_file}
 copy_with_backup configs/.spaceshiprc.zsh ~/.spaceshiprc.zsh
+if [[ "${OS}" == "Linux" ]]; then
+  {
+    echo ""
+    echo "# Temporary bugfix for https://github.com/spaceship-prompt/spaceship-prompt/issues/1193"
+    echo "export SPACESHIP_PROMPT_ASYNC=false"
+  } >> ~/.spaceshiprc.zsh
+fi
+
 
 echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
 exit 3
