@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -84,16 +81,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -101,26 +88,13 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshconfig="nano ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gfpp="git fetch -p -P"
 
-# Activate venv for repo
-function activate() {
-  [[ -z "$1" || -n "$2" ]] && echo "Usage: activate [target]" && echo "  target - The name of the repository, e.g. Stausssi" && return 1
-
-  source "~/.virtualenvs/$1/bin/activate" &> /dev/null || echo "No virtual environment with the name '$1' found!"
-  cd "~/code/$1"
-}
-
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# Python
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
+# Java
+eval "$(jenv init -)"
 
 # Other completions
 source <(kubectl completion zsh)
-
-# JENV for Java versions
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
