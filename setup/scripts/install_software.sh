@@ -23,7 +23,7 @@ function mac_specific {
 echo "Updating brew formulae..."
 brew update &> "${log_file}"
 
-echo "Setting up Python (v3.11 via pyenv)..."
+echo "Setting up Python..."
 {
   brew_install pyenv
   brew install pyenv-ccache
@@ -38,9 +38,10 @@ echo "Setting up Python (v3.11 via pyenv)..."
   fi
 
   pyenv global 3.11
-  brew_install pyenv-virtualenv
   git clone https://github.com/pyenv/pyenv-update.git "$(pyenv root)/plugins/pyenv-update"
   git clone https://github.com/pyenv/pyenv-doctor.git "$(pyenv root)/plugins/pyenv-doctor"
+
+  brew_install pipenv
 } &> "${log_file}"
 
 brew_install jenv
