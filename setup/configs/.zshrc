@@ -91,7 +91,11 @@ alias gfpp="git fetch -p -P"
 eval "$(pyenv init -)"
 function _auto_virtualenv {
     if [[ "${PIPENV_ACTIVE}" == "1" && -f "Pipfile" ]]; then
-        source "$(pipenv --venv)/bin/activate"
+        local pipenv_venv
+        pipenv_venv="$(pipenv --venv -q)"
+        if [[ "${VIRTUAL_ENV}" != "${pipenv_venv}" ]]; then
+            source "${pipenv_venv}/bin/activate"
+        fi
     elif [[ -n "${VIRTUAL_ENV}" ]]; then
         source "${VIRTUAL_ENV}/bin/activate" && deactivate
     fi
