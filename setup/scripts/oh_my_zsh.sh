@@ -52,8 +52,8 @@ if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
     echo "# Linuxbrew configuration"
     echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     echo ""
-    cat ~/.zshrc
-  } > tempfile && mv tempfile ~/.zshrc
+    cat ~/.zshenv
+  } > tempfile && mv tempfile ~/.zshenv
 fi
 
 echo "Setting up Spaceship..."
