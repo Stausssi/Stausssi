@@ -39,11 +39,12 @@ function copy_with_backup {
 
 copy_with_backup configs/.zshrc ~/.zshrc
 copy_with_backup configs/.zshenv ~/.zshenv
-cp -r configs/completions ~/.oh-my-zsh/
 
 echo "Cloning plugins..."
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions &>> ${log_file}
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting &>> ${log_file}
+{
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
+} &>> ${log_file}
 
 # Insert Linuxbrew stuff into zshrc
 if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
@@ -67,7 +68,6 @@ if [[ "${OS}" == "Linux" ]]; then
     echo "export SPACESHIP_PROMPT_ASYNC=false"
   } >> ~/.spaceshiprc.zsh
 fi
-
 
 echo "Please run 'omz reload' to apply the configuration and then restart the setup script"
 exit 3

@@ -1,6 +1,3 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -92,6 +89,19 @@ alias gfpp="git fetch -p -P"
 
 # Python
 eval "$(pyenv init -)"
+function _auto_virtualenv {
+    if [[ "${PIPENV_ACTIVE}" == "1" && -f "Pipfile" ]]; then
+        source "$(pipenv --venv)/bin/activate"
+    elif [[ -n "${VIRTUAL_ENV}" ]]; then
+        source "${VIRTUAL_ENV}/bin/activate" && deactivate
+    fi
+}
+
+function cd {
+    builtin cd "$@"
+    _auto_virtualenv
+}
+_auto_virtualenv
 
 # Java
 eval "$(jenv init -)"
