@@ -6,7 +6,7 @@ command -v jenv >/dev/null || export PATH="$HOME/.jenv/bin:$PATH"
 export EDITOR=nano
 . "$HOME/.cargo/env"
 export GPG_TTY=$(tty)
-export SUMMON_PROVIDER="gopass"
+export SUMMON_PROVIDER="gopass-summon-provider"
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
