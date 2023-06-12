@@ -46,12 +46,16 @@ echo "Cloning plugins..."
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
 } &>> ${log_file}
 
-# Insert Linuxbrew stuff into zshrc
-if [[ "${OS}" == "Linux" && -z ${HOMEBREW_PREFIX} ]]; then
-  echo "Configuring (Linux)brew..."
+# Insert Homebrew shellenv into zshenv
+if [[ -z ${HOMEBREW_PREFIX} ]]; then
+  echo "Configuring brew..."
   {
-    echo "# Linuxbrew configuration"
-    echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "# Homebrew configuration"
+    if [[ "${OS}" == "Linux" ]]; then
+      echo "eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    else
+      echo "eval $(/opt/homebrew/bin/brew shellenv)"
+    fi
     echo ""
     cat ~/.zshenv
   } > tempfile && mv tempfile ~/.zshenv
