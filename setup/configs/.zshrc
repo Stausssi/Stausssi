@@ -112,3 +112,6 @@ eval "$(jenv init -)"
 
 # Other completions
 source <(kubectl completion zsh)
+
+# SED as last entry in path
+export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
