@@ -2,7 +2,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nano
 . "$HOME/.cargo/env"
 export GPG_TTY=$(tty)
-export SUMMON_PROVIDER="gopass-summon-provider"
+export SUMMON_PROVIDER="opt/homebrew/bin/gopass"
 
 # Python
 export PYENV_ROOT="$HOME/.pyenv"
