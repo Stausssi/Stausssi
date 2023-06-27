@@ -64,7 +64,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions alias-tips auto-pipenv)
 
 # Brew completions
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -89,23 +89,6 @@ alias gfpp="git fetch -p -P"
 
 # Python
 eval "$(pyenv init -)"
-function _auto_virtualenv {
-    if [[ "${PIPENV_ACTIVE}" == "1" && -f "Pipfile" ]]; then
-        local pipenv_venv
-        pipenv_venv="$(pipenv --venv -q)"
-        if [[ "${VIRTUAL_ENV}" != "${pipenv_venv}" ]]; then
-            source "${pipenv_venv}/bin/activate"
-        fi
-    elif [[ -n "${VIRTUAL_ENV}" ]]; then
-        source "${VIRTUAL_ENV}/bin/activate" && deactivate
-    fi
-}
-
-function cd {
-    builtin cd "$@"
-    _auto_virtualenv
-}
-_auto_virtualenv
 
 # Java
 eval "$(jenv init -)"

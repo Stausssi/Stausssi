@@ -44,6 +44,8 @@ echo "Cloning plugins..."
 {
   git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/djui/alias-tips.git "${ZSH_CUSTOM}/plugins/alias-tips"
+  git clone https://github.com/Stausssi/auto-pipenv "${ZSH_CUSTOM}/plugins/auto-pipenv"
 } &>> ${log_file}
 
 # Insert Homebrew shellenv into zshenv
