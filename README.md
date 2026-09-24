@@ -1,10 +1,5 @@
-## Welcome to my profile!
-![My Profile Stats](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Stausssi&theme=github_dark)
-
-![My Badges](https://github-profile-trophy.vercel.app/?username=Stausssi&theme=onedark&title=MultiLanguage,Commits,Repositories,Stars,Followers&margin-w=25&no-bg=true)
-
-![My GitHub Stats](https://github-readme-stats.vercel.app/api?username=Stausssi&theme=vision-friendly-dark&show_icons=true&hide=issues,prs) 
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Stausssi&theme=vision-friendly-dark&hide=html,jupyter%20notebook)
-
-**NOTE:** I've recently added a lot of (*very*) old repositories from university lectures. They all have a `Lecture_` prefix and/or are archived to easily distinguish them from active repositories I'm working on.
+<!-- markdownlint-disable MD033 MD041 -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=FFFFFF&repeat=false&width=420&lines=Welcome+to+my+profile+%F0%9F%91%8B">
+  <img alt="Typing animation showing 'Welcome to my profile 👋'" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&duration=2000&pause=1000&color=000000&repeat=false&width=420&lines=Welcome+to+my+profile+%F0%9F%91%8B">
+</picture>
